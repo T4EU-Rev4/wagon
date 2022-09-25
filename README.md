@@ -30,4 +30,8 @@ the serial monitor. + will increase the volume by a step, while - decreases
 the volume by one step. Use this scheme to test all the other features of the 
 device an the lib.
 
+Update:
+There is now also a small interface to controll the player via i2c bus.
+See commands.txt for details.
+
 
