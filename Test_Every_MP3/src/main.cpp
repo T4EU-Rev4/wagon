@@ -1,19 +1,18 @@
 //#include <Arduino.h>
 #include <main.h>
+#include <timer.h>
 
 extern DFRobotDFPlayerMini mp3;   //defined in mp3.cpp
+extern union TTimer timerFlags;       //keep all the flags in one byte
 
-uint16_t state_delay = 2000;
-int title = 1;
 
-void setup() {
-  delay( 500 );
-  mp3_setup();
-  
-}
+//uint16_t state_delay = 2000;
+//int title = 1;
 
-void loop() {
-  
+
+bool testpinLow;
+
+void check_Input() {
   while (Serial.available() > 0) {  
     char inChar = Serial.read();  
     switch (inChar) {
@@ -32,16 +31,49 @@ void loop() {
       
     }
     Serial.println( inChar );
+  }
+}
 
+
+void setup() {
+  delay( 500 );
+  mp3_setup();
+  vumeter_setup();
+  
+  testpinLow = true;
+  pinMode( topLED, OUTPUT );
+  digitalWrite( topLED, LOW );
+
+  timer_Setup();   //last line in this function
+}
+
+void loop() {
+  timer_Trigger();    //call this method often to keep the timer running
+
+
+
+  if (timerFlags.flags.b10MS) {
+    vumeter_measure();
+    timer_Clear10MS();    //prepare next period
+  }
+
+  if (timerFlags.flags.b100MS){
+      if (testpinLow) {
+        testpinLow = false;
+        digitalWrite( topLED, HIGH );
+    } else {
+        testpinLow = true;
+        digitalWrite( topLED, LOW );
+    }
+    timer_Clear100MS();
   }
 
 
-
+  mp3_check();            //check for status of the mp3-player
+  check_Input();          //evaluate any commands from serial monitor
   
-  mp3_check();
-  delay( 1 );
+  
 }
-
 
 
 
