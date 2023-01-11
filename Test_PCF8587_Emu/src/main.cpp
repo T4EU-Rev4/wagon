@@ -2,7 +2,7 @@
 
 /*
  * This program demonstrates the emulation of a PCF8575 by the nano every
- * In this example, only the outputs are used. Input capabilities aswell as the interrupt
+ * In this example, only the outputs are used. Input capabilities as well as the interrupt
  * service of the PCF8575 is not used here, but of course could be.
  * For this simple case, no additional library is used. Just Wire.
  * 
