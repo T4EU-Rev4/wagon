@@ -10,6 +10,8 @@ uint16_t offset      = 380;
 #define LED_AN        LOW
 #define LED_AUS       HIGH
 
+#define SOUNDPIN       A0
+
 uint8_t     vu[] = { 10, 9, 8, 7, 5, 4, 3, 2, 13 };
 uint16_t    vuLimits[] = { 50, 100, 200, 300, 400, 500, 600, 700, 800  };
 
@@ -35,6 +37,12 @@ void vumeter_out( uint16_t value ){
     }
 }
 
+void vumeter_Cler() {
+    for (int i = 0; i<VU_COUNT; i++) {
+        digitalWrite( vu[i], LED_AUS );
+    }    
+}
+
 void vumeter_setup() {
     //LED output
     for (int i = 0; i<VU_COUNT; i++) {
@@ -44,11 +52,7 @@ void vumeter_setup() {
     vumeter_LampTest();
 }
 
-void vumeter_Cler() {
-    for (int i = 0; i<VU_COUNT; i++) {
-        digitalWrite( vu[i], LED_AUS );
-    }    
-}
+
 
 
 void vumeter_measure() {
