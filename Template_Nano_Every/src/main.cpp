@@ -12,23 +12,33 @@ void setup() {
 
 }
 
+/**
+ * @brief Do all the things here to start your animation
+ * 
+ */
 void startAnimation() {
 
-    //put your code to start the animation here
-
 }
 
+/**
+ * @brief This method will be called regularly, while the animation should run
+ *        so place your code to run the animation here
+ * 
+ */
 void loopAnimation() {
 
-  //put your code to loop the animation here. Code will run repeatedly while animation should run
-
 }
 
+/**
+ * @brief This method will be called to stop the animation and do some cleanup like 
+ *        switching all LEDs of etc.
+ * 
+ */
 void stopAnimation() {
 
-    //put your code to stop the animation here
-
 }
+
+
 
 void loop() {
   I2CCommands i2cCmd = i2c_command();   //fetch a new command via I2C
@@ -47,6 +57,6 @@ void loop() {
   if (runAnimation) {
     loopAnimation();
   }
-  
+
   delay(1);   //propably not needed here, 
 }
