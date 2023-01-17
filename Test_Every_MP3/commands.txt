@@ -1,0 +1,30 @@
+
+
+Commands for wagon DK MP3  to control the built in mp3 player
+
+
+Byte A	|	Byte B	|	Meaning
+Commands| Parameter	|
+	0x00	0x00	|	no operation		#define I2C_CMD_NOP
+	0x01	0x00	|	Stop				#define I2C_CMD_STOP
+			0x00	| 	stopp playing
+
+			
+	0x02	n		|	Play				#define I2C_CMD_PLAY
+			0x00	| 	not defined
+			0x01	|	play file 001
+			0x02	|	play file 002
+			...
+			0xFF	|	play file 255	
+
+	0x03	0x01	|	Volume +			#define I2C_CMD_VOLUP
+	0x04	0x01	|	Volume -			#define I2C_CMD_VOLDN 
+				
+	0x05	no		|	set volume level	#define I2C_CMD_VOL 
+			0x01	|	min
+			..
+			0x20	|	max. 
+ 
+ 
+Domenico Vittone 
+  
