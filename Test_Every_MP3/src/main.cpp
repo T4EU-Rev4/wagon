@@ -72,6 +72,9 @@ void loop() {
     case CMD_VOLDOWN: Serial.println("CMD_VOLDOWN");
                       mp3.volumeDown();
                       break;
+    case CMD_VOLSETTO: Serial.println("CMD_VOLSETTO");
+                       mp3.volume( i2c_value() );      
+                       break;           
     case CMD_VOLMAX : Serial.println("CMD_VOLMAX");
                       mp3.volume( VOLUME_MAX );
                       break;
